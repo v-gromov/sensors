@@ -1,0 +1,9 @@
+@INCLUDE = Doxyfile.tmpl
+
+INPUT= .
+EXAMPLE_PATH = .
+
+OUTPUT_DIRECTORY = doc
+GENERATE_TAGFILE = doc/libusb.doxytag
+
+PROJECT_NAME = "LibUsb: Stm32 usb library."

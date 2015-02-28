@@ -1,0 +1,49 @@
+\input texinfo
+@c %**start of header 
+@setfilename readme.texi
+@c %**end of header 
+
+@chapter libusb-serial
+
+@section SYNOPSIS
+
+Library implementing usb-serial device on Stm32.
+
+@section DESCRIPTION
+
+library includes API for accessing and initialising of usb-serial port
+
+library used in the folowing projects:
+@itemize
+@item svn://srv/b5/trunk/pmmcu
+@item svn://srv/b5/trunk/cards/hwtest
+@end itemize
+
+@section BUILD
+
+To build just type here:
+@example
+$ make
+@end example
+
+README documentaion build:
+@example
+$ make doc
+@end example
+
+@subsection Build requirements
+
+@itemize
+@item make
+@item makeinfo
+@item arm-elf-gcc 4.3.1
+@item libusb (for stm32)
+@end itemize
+
+@section AUTHORS
+
+@itemize @bullet
+@item Nikolaj Zamotaev
+@item STMicroelectronics
+@end itemize
+

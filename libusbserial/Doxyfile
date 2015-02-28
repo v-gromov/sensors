@@ -1,0 +1,9 @@
+@INCLUDE = Doxyfile.tmpl
+
+INPUT= .
+EXAMPLE_PATH = .
+
+OUTPUT_DIRECTORY = doc
+GENERATE_TAGFILE = doc/libusbserial.doxytag
+
+PROJECT_NAME = "LibUsbserial: Stm32 library for implementing usb-serial device"

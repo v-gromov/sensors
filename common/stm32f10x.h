@@ -1,0 +1,9 @@
+#ifndef _STM32F10X_H_
+#define _STM32F10X_H_
+
+#define APB1PERIPH_BASE       PERIPH_BASE
+#define APB2PERIPH_BASE       (PERIPH_BASE + 0x10000)
+#define AHBPERIPH_BASE        (PERIPH_BASE + 0x20000)
+
+
+#endif

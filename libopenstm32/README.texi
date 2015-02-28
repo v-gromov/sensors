@@ -1,0 +1,54 @@
+\input texinfo
+@c %**start of header 
+@setfilename readme.texi
+@c %**end of header 
+
+@chapter libopenstm32
+
+@section SYNOPSIS
+
+low level library supporting stm32xxx family of Cortex-m3 
+microcontrollers.
+
+@section DESCRIPTION
+
+library includes API for working with MCU embedded subsystems:
+@itemize
+@item @b{gpio} -- General Purpose I/O
+@item @b{usart} -- Serial port support
+@item @b{usb} 
+@item @b{and so on...}
+@end itemize
+
+library used in B5 hardware tests:
+@itemize
+@item svn://srv/b5/trunk/cards/hwtest
+@item svn://srv/b5/trunk/pmmcu
+@end itemize
+
+@section BUILD
+
+To build just type here:
+@example
+$ make
+@end example
+
+README documentaion build:
+@example
+$ make doc
+@end example
+
+@subsection Build requirements
+
+@itemize
+@item make
+@item makeinfo
+@item arm-elf-gcc 4.3.1
+@end itemize
+
+@section AUTHORS
+
+@itemize @bullet
+@item http://sourceforge.net/projects/libopenstm32
+@end itemize
+

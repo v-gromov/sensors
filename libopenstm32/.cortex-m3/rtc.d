@@ -1,0 +1,7 @@
+.cortex-m3/rtc.o: rtc.c \
+  /home/rrs/src/mcu/branch/cards_tapl3/libopenstm32/rcc.h \
+  /home/rrs/src/mcu/branch/cards_tapl3/libopenstm32/memorymap.h \
+  /home/rrs/src/mcu/branch/cards_tapl3/libopenstm32/common.h \
+  /home/rrs/src/mcu/branch/cards_tapl3/libopenstm32/rtc.h \
+  /home/rrs/src/mcu/branch/cards_tapl3/libopenstm32/memorymap.h \
+  /home/rrs/src/mcu/branch/cards_tapl3/libopenstm32/common.h

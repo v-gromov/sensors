@@ -1,0 +1,45 @@
+libopenstm32 (0.1.0) stable; urgency=low
+
+  2011/10/17
+    * libopenstm32/rcc.c: Возвращена обратно функция Set_USBClock [fhunter]
+
+  2011/10/14
+    * libopenstm32/*.[ch]: Исправлен недосмотр при коммите (смотри svn log)
+      [fhunter]
+
+  2011/10/12
+    * libopenstm32/Makefile: Исправлены ошибки в параметрах кросс-сборки [fhunter]
+
+  2011/08/26
+    * libopenstm32/adc.c: добавлены функции adc_init, adc_read. 
+                         init очень прожорлив и для более требовательных
+                         приложений потребует рефакторинг [pk]
+
+  2011/08/12
+    * libopenstm32/rcc.[ch]: Добавлена поддержка работы с usb от тактового
+      генератора 25МГц [yl]
+
+  2011/04/19
+    * libopenstm32/adc.c: Приведено к текущей версии adc.c в git-овой libopenstm32
+      [fhunter]
+  
+  2011/04/01
+    * libopenstm32/libopenstm32.*ld: Исправлена ошибка в сегменте .bss,
+      приводившая к порче информации о куче [fhunter]
+
+  2011/03/30
+    * libopenstm32/usart.c: Исправлена установка скорости на usart2 [fhunter]
+
+  2011/03/22
+    * libopenstm32/libopenstm32.*ld: Изменён линковочный скрипт для работы malloc
+      [fhunter]
+
+  2011/03/16
+    * libopenstm32/libopenstm32.*ld, init.c: Изменён линковочный скрипт и
+      инициализация для работоспособности malloc [fhunter]
+
+  2011/02/07
+    * libopenstm32/libopenstm32.ram.ld: изменен линковочный скрипт (для заливки
+      прошивки в RAM) [sk]
+
+ -- Sergey Kolemagin <s.kolemagin@metrotek.spb.ru>  Mon, 07 Feb 2011 13:46:56 +0300

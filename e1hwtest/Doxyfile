@@ -1,0 +1,9 @@
+@INCLUDE = Doxyfile.tmpl
+
+INPUT= . ../common/
+EXAMPLE_PATH = .
+
+OUTPUT_DIRECTORY = doc
+GENERATE_TAGFILE = doc/hwtest.doxytag
+
+PROJECT_NAME = "hwtest: B5-E1 hardware testing utility"

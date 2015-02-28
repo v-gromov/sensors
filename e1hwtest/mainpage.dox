@@ -1,0 +1,25 @@
+/** 
+
+\mainpage B5-E1 hardware testing utility: hwtest
+
+This prorgam is the firmware for B5-E1 card. 
+It executed on the card's CPU -- stm32f105 (cortex-m3 core).
+
+Firmware implements simple command interface which enables to user:
+  - to access to B5-E1 components
+  - to perform automatic hardware testing
+  - to perform basic initialization for oscilloscope navigation ;)
+  - to perform basic initialization for voice functions \sa voice_init
+
+Now user/tester can communicate with hwtest with help of COM-port (115200, 8N1).
+
+For the test, ports are configured like this:
+  - Tx0 - voice transmission from codec.
+  - Tx1 - AIS signal.
+
+\section B5E1HwTestCommands Commands, available to user:
+
+\verbinclude cmdlist.txt
+
+*/
+

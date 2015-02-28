@@ -1,0 +1,48 @@
+\input texinfo
+@c %**start of header 
+@setfilename readme.texi
+@c %**end of header 
+
+@chapter libusb
+
+@section SYNOPSIS
+
+Stm32 usb client library.
+
+@section DESCRIPTION
+
+library includes API for accessing usb otg device in Stm32. 
+
+library used in folowing projects:
+@itemize
+@item svn://srv/b5/trunk/pmmcu
+@item svn://srv/b5/trunk/cards/hwtest
+@end itemize
+
+@section BUILD
+
+To build just type here:
+@example
+$ make
+@end example
+
+README documentaion build:
+@example
+$ make doc
+@end example
+
+@subsection Build requirements
+
+@itemize
+@item make
+@item makeinfo
+@item arm-elf-gcc 4.3.1
+@end itemize
+
+@section AUTHORS
+
+@itemize @bullet
+@item STMicroelectronics
+@item Nikolaj Zamotaev
+@end itemize
+

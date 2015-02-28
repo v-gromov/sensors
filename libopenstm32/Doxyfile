@@ -1,0 +1,9 @@
+@INCLUDE = Doxyfile.tmpl
+
+INPUT= .
+EXAMPLE_PATH = .
+
+OUTPUT_DIRECTORY = doc
+GENERATE_TAGFILE = "doc/libopenstm32.doxytag"
+
+PROJECT_NAME = "Libopenstm32: Hardware support library for the stm32 microcontroller."

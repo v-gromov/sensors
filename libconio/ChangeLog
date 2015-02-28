@@ -1,0 +1,27 @@
+libconio (0.0.1-0) unstable; urgency=low
+
+  2011/10/12:
+    * Makefile: Fixed crossbuild hardcodes [fhunter].
+
+  2011/04/22:
+    * conio.c: Added _open stub, so I can use fopen (was needed for libcli to
+      work properly [fhunter].
+
+  2011/03/22:
+    * conio.c: Fixed _sbrk, so it properly works [fhunter]
+
+  2011/03/16:
+    * conio.c: Fixed _sbrk, so malloc works [fhunter]
+
+  2010/08/12:
+    * conio.[ch], mainpage.dox, Makefile: Added documentation [fhunter]
+
+  2010/07/26:
+    * conio.c: Added support for setting callbacks wia conio_init() function.[fhunter]
+    + conio.h: Now you can change the output direction (usb/serial/whatever) in one function call.
+    Without setting the callbacks, libconio doesn't output anything, but does not crash [fhunter].
+  
+  2010/07/23:
+    + conio.c: added initial version of conio for the conio library [fhunter].
+
+ -- Nikolaj Zamotaev <n.zamotaev@metrotek.spb.ru>  Fri, 23 Jul 2010 13:00:20 +0400

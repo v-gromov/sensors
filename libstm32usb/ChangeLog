@@ -1,0 +1,23 @@
+libusb (0.0.1-0) unstable; urgency=low
+
+  2011/02/09:
+    * udelay.h: Добавлена ссылка на stdint.h [fhunter]
+  
+  2010/08/12:
+    * Makefile, mainpage.dox: Switched readme to html [fhunter]
+
+  2010/08/11:
+    * Renamed library to libstm32usb to avoid confusion with libusb [fhunter]
+  
+  2010/07/23:
+    - stm32_otg_hw_config.[ch],stm32_usb_desc.[ch],stm32_usb_prop.[ch],usb_conf.h:
+    moved files to the libusbserial (they are not for generic usb device) [fhunter].
+    * stm32_usb_pwr.c: commented unnecessary headers, added external definitions of
+    power control functions [fhunter].
+    * stm32_usb_istr.c: added #pragma weak and changed the configuration of interrupts
+    so it wouldn't use defines [fhunter]
+    * stm32_otgd_fs_int.c: added #pragma weak definitions for the interrupt handlers [fhunter]
+    * stm32_otgd_fs_cal.c: changed interrupt configuration, so it wouldn't use #define [fhunter]
+    * Makefile: added building documentation, fixed file list
+
+ -- Nikolaj Zamotaev <n.zamotaev@metrotek.spb.ru>  Fri, 23 Jul 2010 13:00:20 +0400

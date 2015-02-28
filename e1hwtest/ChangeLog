@@ -1,0 +1,147 @@
+hwtest (0.0.3) unstable; urgency=low
+  2011/03/15
+    ! e1hwtest/hwtest.c: добавлено отключение/включение USB во время
+      инициализации. Это исправляет ошибку, из-за которой карта могла не
+      определяться как консоль [fhunter, sk]
+
+hwtest (0.0.2) unstable; urgency=low
+  2011/02/09
+    * gpio.[ch]: Общий код инициализации перенесён в common. Оставшееся переведено на функции b5_* и
+    приведено к символическим названиям. смотри common/io.h и gpio.h [fhunter,sk]
+    * fpgaregs.[ch]: Общий код вынесен в common. Удалены ссылки на ненужные header-ы. [fhunter,sk]
+    * voice.c: Переведён на общий код доступа к fpga (из common) [fhunter,sk]
+    * autotest.c: Переход на общую модель управления питанием, перенесены макросы в common. Переход на 
+    новую модель gpio. Добавлено управление светодиодом ERR при ошибках тестирования. [fhunter,sk]
+    * codec.c: переход к новой модели gpio. [fhunter,sk]
+    * hwtest.c: переход к новой модели gpio. Общий код вынесен в common. Переход к новой модели управления
+    питанием [fhunter,sk]
+    * pshape.c: модификация используемых header-ов [fhunter,sk]
+    * liu.c: переход к новой модели gpio. [fhunter,sk]
+    * dumpregs.c: Общий код вынесен в common. [fhunter,sk]
+
+hwtest (0.0.1) unstable; urgency=low
+
+  2011/02/08
+    * e1hwtest/hwtest.c e1hwtest/Makefile: добавлена возможность грузиться в
+      RAM [sk]
+
+  2011/02/04
+    * pshape.c: Added color to graphs. Added drawing of all 4 graphs on pulse shape [fhunter]
+
+  2010/11/24
+    * hwtest.c: open all options when cars is turned on  [artem]
+    * pshape.c: getch used for select port number instead 
+                usart2_rcv_line [artem]
+  2010/11/23
+    * Makefile: in cmdlist.h end of line is "\r\n" instead "\r"  [artem]
+
+  2010/07/26
+    * e1hwtest/autotest.c e1hwtest/hwtest.c e1hwtest/pshape.c e1hwtest/dumpregs.c
+      e1hwtest/liu.c: added '/r' [sk]
+    * e1hwtest/Makefile: new build with libconio, libusb and libuisbserial [sk]
+
+  2010/07/21
+    - e1hwtest/service.{c,h} e1hwtest/fpga.{c,h} e1hwtest/i2c.{c,h}
+      e1hwtest/dataflash.{c.h} e1hwtest/xmodem.{c,h} e1hwtest/spi.{c,h}
+      e1hwtest/conio.c e1hwtest/stm32f10x.h e1hwtest/stm32f10x_spi.h
+      e1hwtest/usart2.{c,h} e1hwtest/defs.h:
+      moved in ./common/ [sk]
+    * e1hwtest/pca9552.c e1hwtest/sp3508.c e1hwtest/autotest.c
+      e1hwtest/hwtest.c e1hwtest/Makefile e1hwtest/fpgaregs.c
+      e1hwtest/fpgaregs.h e1hwtest/Doxyfile.tmpl e1hwtest/mainpage.dox
+      e1hwtest/Doxyfile: refactoring [sk]
+  2010/07/09
+    - init.c: moved init.c file into libopenstm32 [fhunter]
+    - hwtest.ld: moved linker script into libopenstm32 [fhunter]
+    * Makefile: changed to reflect absent init.c [fhunter]
+  2010/06/11
+    - dfload.c: Removed separate dataflash uploader
+    * Makefile: removed separate dfload application
+    + autotest.[ch]: Added automatic tests [fhunter]
+    * hwtest.c: Added start of automatic tests before giving console [fhunter]
+    * pshape.c: Added reading of required port to run pulse shape on [fhunter]
+  2010/06/10
+    * liu.[ch]: Placed custom_shape variable to the proper place [fhunter]
+  2010/06/09
+    * liu.c: Fixed bug with setting LIU for T1/J1 instead of E1 [fhunter]
+  2010/06/08
+    * liu.[ch]: Added proper initialisation for custom level and pulse shape [fhunter]
+    * pshape.c,fpgaregs.c: Fixed resetting of channel for pulse shape test. [fhunter]
+    + dumpregs.[ch]: Added command for dumping all registers (codec,liu, fpga) [fhunter]
+    + voice.[ch]: Added configuration for transmitting and receiving voice on ts 1. [fhunter]
+    * cmdlist.txt, hwtest.c: Added new command for dumping registers. Add voice init. [fhunter]
+  2010/06/04
+    - console.[ch]: Removed unnecessary function (printf now works) [fhunter]
+    + pshape.[ch]: Added reading of pulse shape [fhunter,pk].
+                   Added graph of pulse shape in ASCII [fhunter].
+    * codec.[ch]: Added initialisation code for TLV320AIC codec. [fhunter,pk].
+    * fpgaregs.c: Added initialisation of FPGA (enable sscope and pcm_clock) [fhunter,pk].
+    * fpgaregs.h: Added definitions of fpga registers. [fhunter,pk].
+    * hwtest.c: Added command for reading pulse shape. Added codec initialisation. [fhunter].
+    * gpio.c: Added configuration of reset for TLV320AIC codec. [fhunter].
+  2010/06/03
+    + Doxyfile,
+      Doxyfile.tmpl,
+      Makefile: `make doc` now builds doxy-documentation. search 
+                documentation in ./doc/ directory[pk]
+    * Makefile: cmdlist.h now automatically generated from cmdlist.txt [pk]
+    * fpgaregs.[ch],liu.[ch],pca9552.[ch]: rewritten code to use
+    			generic callbacs [fhunter]
+    * service.[ch]: added generic function for parsing line and 
+    			calling read/write callbacks (not tested) [fhunter]
+    - stm32f10x_gpio.h, stm32f10x_dma.h: Removed unnecessary files [fhunter]
+    + i2c.c, i2c.h: Ported i2c driver from NutOS [fhunter]
+    + codec.c, codec.h: Added code for accessing codec registers.
+    			See also liu.c [fhunter]
+    * hwtest.c: added hardware tests for load/short resistors and leds. 
+    		Added code for accessing codec (currently hangs) [fhunter]
+    + pca9552.c, pca9552.h: written driver for accessing leds and load/short resistors [fhunter].
+  2010/06/02
+    * hwtest.c: 'h' command added. not tested. [pk]
+    + cmdlist.h: command list now in C-style string. [pk]
+    - cmdlist.txt    
+    * liu.c: initialization of liu turns on all B5-E1's Tx, Rx ports.
+             read/write of liu register now works. [fhunter, pk]             
+    * hwtest.c: added 'S' command. it works. [fhunter, pk] 
+    * hwtest.c, 
+      fpgaregs.c, 
+      liu.c: commands 'i', 'f' now works as defines in cmdlist.txt 
+              [fhunter, pk]
+    + conio.c: we have printf now!!!! HURAHH!!! [fhunter, pk]
+    * gpio.c: Added configuration of LIU reset and chipselect. 
+    		Added configuration of USART3 pins. [fhunter, pk]
+    * liu.h, liu.c: Register read access work [fhunter, pk]
+    * hwtest.c: Added command 'i'. See also cmdlist.txt  [pk].
+    + defs.h, idt82v2084.h: added definitions of LIU registers [pk].
+    + usart3.h, usart3.c: Support of USART3 in synchronous mode (aka SPI). [fhunter, pk].
+    * console.c: '\r' added after each '\n' character [fhunter]
+    + dfload.c: firmware upload (UART to DataFlash) now can be made
+                with stand-alone application -- dfload [fhunter]
+    * xmodem.c: awaiting of transfer begin works with 'cu', 
+                but not with minicom... [fhunter, pk]
+    * spi.c: FPGA registers access works with divider 4 (about 18 MHz) [fhunter,pk]
+  2010/06/01
+    + liu.c, liu.h, usart3.c: added initial support of lui (not tested) [fhunter,pk]
+    * hwtest.c : partially implemented 'f' command, see cmdlist.txt [fhunter]
+    * spi.c : added control for CS signal on SPI1, switched SPI1 to LSB first.
+    		[fhunter, pk]
+    + fpgaregs.c, fpgaregs.h: added support for reading/writing fpga registers 
+    			via SPI1 [fhunter, pk]
+    * spi.c: increased passive serial and dataflash SPI speed. [fhunter, pk]
+    * spi.c, dataflash.c, stm32f10x*: moved to this project. [fhunter, pk]
+    * service.c, hwtest.c: successfully loaded firmware to dataflash from 
+                 xmodem (usart) and from df to fpga. [fhunter, pk]
+    + init.c:	Initialisation for constant data and bss segment. New default
+    		interrupt handlers. [fhunter]
+    + service.c, service.h: Added bridge xmodem->fpga [fhunter, pk]
+    - miniblink.c,miniblink.ld: renamed to hwtest.c, hwtest.ld [fhunter]
+    * Makefile: Fixed to correspond other changes [fhunter, pk]
+    + cmdlist.txt: list of commands which we plan to implement [fhunter, pk]
+    + gpio.c, gpio.h,
+      fpga.c, fpga.h,
+      console.c, console.h,
+      usart2.c, usart2.h,
+      xmodem.c, xmodem.h: corresponding routines must placed in 
+                          corresponding files [fhunter, pk]
+
+ -- Pavel Kurochkin <pk@metrotek.spb.ru>  Tue, 01 Jun 2010 12:37:54 +0400

@@ -1,0 +1,48 @@
+\input texinfo
+@c %**start of header 
+@setfilename readme.texi
+@c %**end of header 
+
+@chapter libconio
+
+@section SYNOPSIS
+
+Console I/O abstraction library.
+
+@section DESCRIPTION
+
+Library is a HAL layer for using printf/scanf with any device, it is done primary for stm32.
+
+library used in folowing projects:
+@itemize
+@item svn://srv/b5/trunk/pmmcu
+@item svn://srv/b5/trunk/cards/hwtest
+@end itemize
+
+@section BUILD
+
+To build just type here:
+@example
+$ make
+@end example
+
+README documentaion build:
+@example
+$ make doc
+@end example
+
+@subsection Build requirements
+
+@itemize
+@item make
+@item makeinfo
+@item arm-elf-gcc 4.3.1
+@end itemize
+
+@section AUTHORS
+
+@itemize @bullet
+@item STMicroelectronics
+@item Nikolaj Zamotaev
+@end itemize
+

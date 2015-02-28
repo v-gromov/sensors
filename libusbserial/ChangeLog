@@ -1,0 +1,22 @@
+libusbserial (0.0.2-0) unstable; urgency=low
+
+  2011/06/29:
+    * stm32_usb_desc.[ch]: Changed descriptor, so that there is no need to patch
+      usb-serial kernel module (beware of /dev/ttyACM0) [fhunter]
+
+libusbserial (0.0.1-0) unstable; urgency=low
+
+  2010/08/12:
+     * stm32_otg_hw_config.[ch], Doxyfile.tmpl, mainpage.dox, Makefile: cleaned up,
+     documented, switched to html readme. [fhunter]
+  
+  2010/07/23:
+     + conio_usb.c: Moved functions for usb serial access from conio.c in hwtests
+     project [fhunter].
+     + stm32_otg_hw_config.[ch],stm32_usb_desc.[ch],stm32_usb_prop.[ch],usb_conf.h:
+     created initial version by moving the files from libusb, and modifying them to
+     be able to build them [fhunter].
+     + usb_conf.c: created configuration file from usb_conf.h (to be able to build
+     the library [fhunter].
+
+ -- Nikolaj Zamotaev <n.zamotaev@metrotek.spb.ru>  Fri, 23 Jul 2010 13:00:20 +0400

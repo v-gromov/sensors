@@ -1,0 +1,9 @@
+@INCLUDE = Doxyfile.tmpl
+
+INPUT= .
+EXAMPLE_PATH = .
+
+OUTPUT_DIRECTORY = doc
+GENERATE_TAGFILE = doc/libconio.doxytag
+
+PROJECT_NAME = "LibConio: Console I/O abstraction library."
