@@ -15,7 +15,6 @@
 
 #include "gpio.h"
 #include "cmdlist.h"
-#include "dumpregs.h"
 #include "autotest.h"
 #include "conio.h"
 #include "conio_usb.h"
@@ -70,8 +69,6 @@ int main( void )
 //    putchar( byte );
 
     switch ( byte ) {
-      case 'D':		       // Dump all registers (FPGA, Liu, Codec)
-        dump_registers( );
       case 'h':
         puts( cmdlist );
         break;
