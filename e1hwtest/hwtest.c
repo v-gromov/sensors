@@ -6,8 +6,6 @@
 #include <libusbserial/stm32_otg_hw_config.h>
 #include <libstm32usb/stm32_otgd_fs_dev.h>
 
-
-#include <common/usart2.h>
 #include <common/i2c.h>
 #include <common/service.h>
 #include <udelay.h>
