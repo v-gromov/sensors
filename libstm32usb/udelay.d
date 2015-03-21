@@ -1,1 +1,0 @@
-udelay.o: udelay.c
