@@ -127,17 +127,4 @@ void command( cmd_callback cmd )
   };
 };
 
-void dump_nregs_offs( uint16_t num, uint16_t offs ) 
-{
-  int i, j;
-
-  for( i = offs; i < offs + num; i += 8 ) {
-    //printf( "%08x :", i );
-    for( j = 0; j < 8; j++ ) {
-      //printf( " %04x", fpgaregs_read( i + j ) );
-    };
-    puts( "\r" );
-  };
-} 
-
 /*@}*/

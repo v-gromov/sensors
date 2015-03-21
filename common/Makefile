@@ -33,8 +33,7 @@ CFLAGS		= -O0 -g -Wall -Wextra -I$(TOOLCHAIN_DIR) \
                   -I$(CONIODIR) -I$(USBSERIALDIR) \
 		  -mcpu=cortex-m3 -mthumb 
 
-OBJS            = usart2.o service.o \
-                  i2c.o 
+OBJS            = service.o i2c.o 
 
 Q=
 
