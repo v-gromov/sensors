@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <libopenstm32/rcc.h>
 #include <libopenstm32/nvic.h>
+#include <libopenstm32/exti.h>
 #include <stm32_usb_init.h>
 #include <stm32_usb_pwr.h>
 #include <libusbserial/stm32_otg_hw_config.h>
@@ -48,7 +49,18 @@ void hardware_setup( void )
 
   //I2C init
   TwInit( 0 );
-
+  
+/*
+  exti_set_trigger(EXTI8, EXTI_TRIGGER_RISING);
+  exti_set_trigger(EXTI9, EXTI_TRIGGER_RISING);
+  exti_set_trigger(EXTI14, EXTI_TRIGGER_RISING);
+  exti_set_trigger(EXTI15, EXTI_TRIGGER_RISING);
+  exti_select_source(EXTI8, GPIOC);
+  exti_select_source(EXTI9, GPIOC);
+  exti_select_source(EXTI14, GPIOD);
+  exti_select_source(EXTI15, GPIOD);
+  exit_enable_request(EXTI8|EXTI9|EXTI14|EXTI15);
+*/
 };
 
 unsigned char byte = 0x0;
