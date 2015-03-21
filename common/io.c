@@ -5,7 +5,7 @@
 void common_gpio_setup( void )
 {
   rcc_peripheral_enable_clock( &RCC_APB2ENR,
-                               IOPEEN | IOPDEN | IOPBEN );
+                               IOPEEN | IOPDEN | IOPBEN | IOPCEN );
 
 
   //Power & Error LEDs

@@ -54,8 +54,7 @@ LDFLAGS         = -L$(TOOLCHAIN_DIR)/libopenstm32 \
 ADDLIBS         = -lc -lopenstm32 -lstm32usb -lusbserial -lconio
 
 OBJS            = $(COMMON_DIR)/*.o gpio.o fpgaregs.o usart3.o \
-                  pca9532.o dumpregs.o \
-                  autotest.o 
+                  dumpregs.o autotest.o 
 
 OBJS_HWTEST     = $(HWTEST).o $(OBJS)
 

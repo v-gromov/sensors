@@ -22,7 +22,6 @@
 #include "usart3.h"
 #include "fpgaregs.h"
 #include "cmdlist.h"
-#include "pca9532.h"
 #include "dumpregs.h"
 #include "autotest.h"
 #include "conio.h"
@@ -88,25 +87,6 @@ int main( void )
         dump_registers( );
       case 'v':                // Turn on/off power to the board. Format v[0|1].
         //                        command( power );
-        break;
-      case 'l':                // Access leds. Format l<number> <0|1>
-        command( leds_set );
-        break;
-      case 'r':                // Access to load/short resistors. Format: r<l|s><port> [0|1]
-        byte = getchar( );
-        putchar( byte );
-
-        switch ( byte ) {
-          case 'l':
-            command( resistors_load_set );
-            break;
-          case 's':
-            command( resistors_short_set );
-            break;
-          default:
-            puts( "ERROR invalid command\r\n" );
-            break;
-        };
         break;
       case 'h':
         puts( cmdlist );
