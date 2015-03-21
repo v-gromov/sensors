@@ -3,10 +3,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#include "fpga.h"
 #include "service.h"
-#include <common/io.h>
-#include <common/fpgaregs.h>
 
 /** \addtogroup SERVICE 
   * \{
@@ -124,11 +121,9 @@ void command( cmd_callback cmd )
 {
   if( cmd(  ) ) {
     puts( "\n\rERROR\n\r" );
-    b5_set( CARD_ERR_LED );   //Red user led
   }
   else {
     puts( "\n\rOK\n\r" );
-    b5_clear( CARD_ERR_LED ); //Red user led
   };
 };
 

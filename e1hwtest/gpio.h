@@ -1,7 +1,7 @@
 #ifndef GPIO__H
 #define GPIO__H
 
-#include <common/io.h>
+#include "io.h"
 
 #define CARD_US3_CLK_BIT  	GPIO10
 #define CARD_US3_CLK_PORT	GPIOD

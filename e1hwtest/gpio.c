@@ -1,5 +1,3 @@
-#include <common/io.h>
-
 #include "gpio.h"
 
 /** \file gpio.c

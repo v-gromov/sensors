@@ -2,9 +2,7 @@
   * \brief Function for dumping register contents
   */
 #include <stdio.h>
-#include <common/fpgaregs.h>
 #include <common/service.h>
-#include "fpgaregs.h"
 
 /** \brief Dump FPGA, LIU and CODEC registers on console
   *

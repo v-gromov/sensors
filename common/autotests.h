@@ -32,6 +32,4 @@
 	  puts("\n\r");\
       }
 
-int fpga_reg_autotest( int address );
-
 #endif

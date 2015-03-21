@@ -1,6 +1,5 @@
 #include <libopenstm32/rcc.h>
-#include <common/io.h>
-#include <common/power.h>
+#include "io.h"
 
 void common_gpio_setup( void )
 {
@@ -24,8 +23,6 @@ void common_gpio_setup( void )
   b5_set_mode( CARD_USART2_RX, GPIO_MODE_INPUT,
                GPIO_CNF_INPUT_FLOAT );
   
-  power_init(  );
-
   //nCONFIG
   b5_set_mode( CARD_NCONFIG, GPIO_MODE_OUTPUT_2_MHZ,
                GPIO_CNF_OUTPUT_OPENDRAIN );

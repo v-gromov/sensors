@@ -7,18 +7,13 @@
 #include <libstm32usb/stm32_otgd_fs_dev.h>
 
 
-#include <common/spi.h>
 #include <common/usart2.h>
 #include <common/i2c.h>
-#include <common/fpga.h>
-#include <common/fpgaregs.h>
 #include <common/service.h>
-#include <common/power.h>
 #include <udelay.h>
 
 
 #include "gpio.h"
-#include "fpgaregs.h"
 #include "cmdlist.h"
 #include "dumpregs.h"
 #include "autotest.h"
@@ -75,17 +70,8 @@ int main( void )
 //    putchar( byte );
 
     switch ( byte ) {
-      case 'p':                // Program FPGA from Dataflash
-        command( df2fpga );
-        break;
-      case 'f':                // Access FPGA registers (write, read) format: f<address><separator>[<data>]
-        command( fpgaregs_rw );
-        break;
       case 'D':		       // Dump all registers (FPGA, Liu, Codec)
         dump_registers( );
-      case 'v':                // Turn on/off power to the board. Format v[0|1].
-        //                        command( power );
-        break;
       case 'h':
         puts( cmdlist );
         break;
