@@ -14,8 +14,6 @@
 
 
 #include "gpio.h"
-#include "cmdlist.h"
-#include "autotest.h"
 #include "conio.h"
 #include "conio_usb.h"
 
@@ -70,11 +68,10 @@ int main( void )
 
     switch ( byte ) {
       case 'h':
-        puts( cmdlist );
+        puts( "This is help\r\n" );
         break;
       default:
         puts( "ERROR invalid command\r\n" );
-        puts( cmdlist );
         break;
     }
   };

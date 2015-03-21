@@ -61,7 +61,7 @@ Q=
 
 all: $(HWTEST) 
 
-$(HWTEST): cmdlist.h $(OBJS_HWTEST) $(LDSCRIPT)
+$(HWTEST): $(OBJS_HWTEST) $(LDSCRIPT)
 	@printf "  LD      $(subst $(shell pwd)/,,$(@))\r\n"
 	$(Q)$(LD) $(LDFLAGS) $(OBJS_HWTEST) --start-group $(ADDLIBS) \
 	          --end-group -o $@
@@ -74,11 +74,6 @@ $(HWTEST): cmdlist.h $(OBJS_HWTEST) $(LDSCRIPT)
 	@printf "  CC      $(subst $(shell pwd)/,,$(@))\n"
 	$(Q)$(CC) $(CFLAGS) -o $@ -c $<
 	@$(CC) $(CFLAGS) -MD -c $< -o $@
-
-cmdlist.h: cmdlist.txt
-	echo "char* cmdlist = "   > $@
-	sed 's/^/"/;s/$$/\\r\\n"/' $< >> $@
-	echo ";"                  >> $@
 
 doc: Doxyfile Doxyfile.tmpl
 	doxygen
