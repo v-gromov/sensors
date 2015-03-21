@@ -12,14 +12,12 @@
 #include <common/i2c.h>
 #include <common/fpga.h>
 #include <common/fpgaregs.h>
-#include <common/dataflash.h>
 #include <common/service.h>
 #include <common/power.h>
 #include <udelay.h>
 
 
 #include "gpio.h"
-#include "usart3.h"
 #include "fpgaregs.h"
 #include "cmdlist.h"
 #include "dumpregs.h"

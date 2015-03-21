@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#include "dataflash.h"
 #include "fpga.h"
 #include "service.h"
 #include <common/io.h>
@@ -14,33 +13,6 @@
   */
 
 /*@{*/
-
-/** Transfer firmware from dataflash to fpga via passive serial.
- *  Firmware is stored at DF_FIRMWARE_OFFSET address and it's 
- *  maximum size does not mean because fpga notifies us via 
- *  nSTATUS pin about incorrect firmware.
- *
- * \return -1 on error, 0 otherwise
- */
-
-int df2fpga( void )
-{
-  unsigned int address = DF_FIRMWARE_OFFSET;
-  uint8_t buffer[DF_PAGE_SIZE];
-  fpga_reset(  );
-  fpga_begin_conf(  );
-
-  while( !fpga_confdone(  ) ) {
-    dataflash_block_read( address, buffer, sizeof( buffer ) );
-
-    if( fpga_send_ps( buffer, sizeof( buffer ) ) == -EBADBLOCK ) {
-      return -1;
-    };
-    address += DF_PAGE_SIZE;
-
-  };
-  return 0;
-};
 
 /** This function parses input string for address and optional data.
   * Format of the input string: AAAA[[,| |\\t|:]DDDD]. All numbers
