@@ -30,6 +30,24 @@ volatile uint32_t time=0;
 
 char bits[4]={14,15,8,9};
 
+void print_int(uint32_t integer_n){
+    char buffer[11];
+    int i;
+    for(i=0;i<sizeof(buffer);i++){
+	buffer[i]='0';
+    };
+    buffer[10]=0;
+    i=9;
+    while(integer_n>0){
+	int modulus;
+	modulus=integer_n % 10;
+	buffer[i]=char('0'+modulus);
+	i--;
+	integer_n /=10;
+    }
+    puts(buffer);
+}
+
 void systick_handler( void){
     time ++;
 }
@@ -124,9 +142,16 @@ int main( void )
 
   while( 1 ) {
     byte = getchar( );
-    printf("%010d %010d %010d %010d\n",sensors[0],sensors[1],sensors[2],sensors[3]);
-    printf("%010d %010d %010d %010d\n",sensors_old[0],sensors_old[1],sensors_old[2],sensors_old[3]);
-    printf("\n");
+    for(i=0;i<3;i++){
+	print_int(sensors[0]);
+	puts(" ");
+    };
+    puts("\n");
+    for(i=0;i<3;i++){
+	print_int(sensors_old[0]);
+	puts(" ");
+    };
+    puts("\n\n");
   };
 
   return 0;
