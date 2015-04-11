@@ -2,6 +2,7 @@
 #include <libopenstm32/rcc.h>
 #include <libopenstm32/nvic.h>
 #include <libopenstm32/exti.h>
+#include <libopenstm32/systick.h>
 #include <stm32_usb_init.h>
 #include <stm32_usb_pwr.h>
 #include <libusbserial/stm32_otg_hw_config.h>
@@ -23,6 +24,36 @@
 void __aeabi_idiv(void){
 }
 
+volatile uint32_t sensors[4]={0,0,0,0};
+volatile uint32_t sensors_old[4]={0,0,0,0};
+volatile uint32_t time=0;
+
+char bits[4]={14,15,8,9};
+
+void systick_handler( void){
+    time ++;
+}
+
+void exti_handler( void ){
+    int i;
+    for(i=0;i<4;i++){
+	    if(EXTI_PR & (1<<bits[i])){
+		sensors_old[i]=sensors[i];
+		sensors[i]=time;
+		EXTI_PR |= (1<<bits[i]);
+	    }
+    }
+}
+
+void exti_init( void) {
+    EXTI_IMR = 0xc300;
+    EXTI_EMR = 0xc300;
+    EXTI_RTSR = 0xc300;
+    EXTI_FTSR = 0xc300;
+    AFIO_EXTICR3 = 0x0022;
+    AFIO_EXTICR4 = 0x3300;
+}
+
 /** NOTE: this function is called before FPGA is loaded.
  */
 void hardware_setup( void )
@@ -30,10 +61,29 @@ void hardware_setup( void )
   //For running at proper speed
   rcc_clock_setup_in_hse_25mhz_out_72mhz(  );
   gpio_setup(  );
+  exti_init( );
   
 #ifdef _LINK_RAM_
   nvic_init( );
 #endif
+  nvic_register_interrupt(NVIC_SYSTICK_IRQ,systick_handler);
+  systick_set_reload(9000);
+  systick_set_clocksource(STK_CTRL_CLKSOURCE_AHB_DIV8);
+  systick_counter_enable();
+  systick_interrupt_enable();
+  nvic_enable_irq(NVIC_SYSTICK_IRQ);
+
+  nvic_register_interrupt(NVIC_EXTI0_IRQ,exti_handler);
+  nvic_register_interrupt(NVIC_EXTI1_IRQ,exti_handler);
+  nvic_register_interrupt(NVIC_EXTI2_IRQ,exti_handler);
+  nvic_register_interrupt(NVIC_EXTI3_IRQ,exti_handler);
+  nvic_register_interrupt(NVIC_EXTI4_IRQ,exti_handler);
+  nvic_enable_irq(NVIC_EXTI0_IRQ);
+  nvic_enable_irq(NVIC_EXTI1_IRQ);
+  nvic_enable_irq(NVIC_EXTI2_IRQ);
+  nvic_enable_irq(NVIC_EXTI3_IRQ);
+  nvic_enable_irq(NVIC_EXTI4_IRQ);
+
 
   //init USB  
   Set_USBClock(  );
@@ -74,16 +124,9 @@ int main( void )
 
   while( 1 ) {
     byte = getchar( );
-//    putchar( byte );
-
-    switch ( byte ) {
-      case 'h':
-        puts( "This is help\r\n" );
-        break;
-      default:
-        puts( "ERROR invalid command\r\n" );
-        break;
-    }
+    printf("%010d %010d %010d %010d\n",sensors[0],sensors[1],sensors[2],sensors[3]);
+    printf("%010d %010d %010d %010d\n",sensors_old[0],sensors_old[1],sensors_old[2],sensors_old[3]);
+    printf("\n");
   };
 
   return 0;

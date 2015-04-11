@@ -17,7 +17,7 @@ void gpio_setup( void )
 void common_gpio_setup( void )
 {
   rcc_peripheral_enable_clock( &RCC_APB2ENR,
-                               IOPEEN | IOPDEN | IOPBEN | IOPCEN );
+                               IOPEEN | IOPDEN | IOPBEN | IOPCEN | AFIOEN );
 
   //Sensors
   b5_set_mode( SENSOR1, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOAT);
