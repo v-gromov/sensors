@@ -30,6 +30,11 @@ volatile uint32_t time=0;
 
 char bits[4]={14,15,8,9};
 
+void delay(uint32_t ms){
+	uint32_t newtime = time + ms;
+	while(time !=newtime) continue;
+}
+
 void print_int(uint32_t integer_n){
     char buffer[12]=" 0000000000";
     int i;
@@ -50,14 +55,15 @@ void systick_handler( void){
 
 void exti_handler( void ){
     int i;
+    uint32_t flags = EXTI_PR;
+    EXTI_PR = 0xffff;
     if(b5_get(ONBOARD_LED)) b5_clear(ONBOARD_LED); else b5_set(ONBOARD_LED);
     for(i=0;i<4;i++){
-	    if(EXTI_PR & (1<<bits[i])){
+	    if(flags & (1<<bits[i])){
 		sensors_old[i]=sensors[i];
 		sensors[i]=time;
 	    }
     }
-    EXTI_PR = 0xffff;
 }
 
 void exti_init( void) {
@@ -102,12 +108,13 @@ void hardware_setup( void )
   systick_interrupt_enable();
   nvic_enable_irq(NVIC_SYSTICK_IRQ);
 
-  exti_init( );
   nvic_register_interrupt(NVIC_EXTI0_IRQ,exti_handler);
   nvic_register_interrupt(NVIC_EXTI1_IRQ,exti_handler);
   nvic_register_interrupt(NVIC_EXTI2_IRQ,exti_handler);
   nvic_register_interrupt(NVIC_EXTI3_IRQ,exti_handler);
   nvic_register_interrupt(NVIC_EXTI4_IRQ,exti_handler);
+  exti_init( );
+  EXTI_PR = 0xffff;
   nvic_enable_irq(NVIC_EXTI0_IRQ);
   nvic_enable_irq(NVIC_EXTI1_IRQ);
   nvic_enable_irq(NVIC_EXTI2_IRQ);
@@ -126,7 +133,6 @@ int main( void )
   puts( "B5-E1\r\n" );
 
   while( 1 ) {
-    byte = getchar( );
     puts("time:\r\n");
     print_int(time);
     puts("new:\r\n");
@@ -139,6 +145,8 @@ int main( void )
 	print_int(sensors_old[i]);
     };
     puts("\r\n");
+    if(b5_get(ONBOARD_LED)) b5_clear(ONBOARD_LED); else b5_set(ONBOARD_LED);
+    delay(1000);
   };
 
   return 0;
