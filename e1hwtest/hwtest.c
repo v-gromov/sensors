@@ -160,18 +160,18 @@ int main( void )
   int i;
   hardware_setup(  );
 
-  putstr( "Sensors\n" );
+  putstr( "Sensors\r\n" );
 
   while( 1 ) {
-    putstr("BEGIN\n");
+    putstr("BEGIN\r\n");
     putstr("time: ");
     print_int(time);
-    putstr("\ncounters: ");
+    putstr("\r\ncounters: ");
     for(i=0;i<4;i++){
 	print_int(sensors[i]);
 	putstr(" ");
     };
-    putstr("\n");
+    putstr("\r\n");
 //    puts("old:\r\n");
 //    for(i=0;i<4;i++){
 //	print_int(sensors_old[i]);
@@ -187,7 +187,7 @@ int main( void )
 //	print_int(rpm);
 //    };
 //    puts("\r\n");
-    putstr("\n\nEND");
+    putstr("\r\n\r\nEND\r\n\r\n");
     if(b5_get(ONBOARD_LED)) b5_clear(ONBOARD_LED); else b5_set(ONBOARD_LED);
     delay(1000);
   };
