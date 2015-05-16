@@ -25,8 +25,8 @@
 void __aeabi_idiv(void){
 }
 
-volatile uint32_t sensors[4]={1,2,3,4};
-volatile uint32_t sensors_old[4]={2,3,4,5};
+volatile uint32_t sensors[4]={0,0,0,0};
+//volatile uint32_t sensors_old[4]={2,3,4,5};
 volatile uint32_t time=0;
 
 char bits[4]={14,15,8,9};
@@ -34,6 +34,14 @@ char bits[4]={14,15,8,9};
 void delay(uint32_t ms){
 	uint32_t newtime = time + ms;
 	while(time !=newtime) continue;
+}
+
+void putstr(const char* string){
+    if(string == NULL) return;
+    while(*string != 0){
+	putchar(*string);
+	string++;
+    };
 }
 
 void print_int(uint32_t integer_n){
@@ -61,20 +69,24 @@ void timer_handler(void){
      TIM3_SR = 0;//Сброс статуса (чтобы срабатывали прерывания дальше)
      TIM4_SR = 0;
      if(flags3 & TIM_SR_CC3IF){//Сработал захват таймера
-	sensors_old[0]=sensors[0];
-        sensors[0]=TIM3_CCR3;//Считать захваченный момент
+//	sensors_old[0]=sensors[0];
+//        sensors[0]=TIM3_CCR3;//Считать захваченный момент
+	sensors[0]++;
      }
      if(flags4 & TIM_SR_CC3IF){
-	sensors_old[2]=sensors[2];
-    	sensors[2]=TIM4_CCR3;
+//	sensors_old[2]=sensors[2];
+//    	sensors[2]=TIM4_CCR3;
+	sensors[2]++;
      }
      if(flags3 & TIM_SR_CC4IF){
-	sensors_old[1]=sensors[1];
-    	sensors[1]=TIM3_CCR4;
+//	sensors_old[1]=sensors[1];
+//    	sensors[1]=TIM3_CCR4;
+	sensors[1]++;
      }
      if(flags4 & TIM_SR_CC4IF){
-	sensors_old[3]=sensors[3];
-    	sensors[3]=TIM4_CCR4;
+//	sensors_old[3]=sensors[3];
+//    	sensors[3]=TIM4_CCR4;
+	sensors[3]++;
      }
 }
 
@@ -148,31 +160,34 @@ int main( void )
   int i;
   hardware_setup(  );
 
-  puts( "B5-E1\r\n" );
+  putstr( "Sensors\n" );
 
   while( 1 ) {
-    puts("time:\r\n");
+    putstr("BEGIN\n");
+    putstr("time: ");
     print_int(time);
-    puts("new:\r\n");
+    putstr("\ncounters: ");
     for(i=0;i<4;i++){
 	print_int(sensors[i]);
+	putstr(" ");
     };
-    puts("");
-    puts("old:\r\n");
-    for(i=0;i<4;i++){
-	print_int(sensors_old[i]);
-    };
-    puts("RPM:\r\n");
-    for(i=0;i<4;i++){
-	int rpm=0;
-	rpm = sensors[i]-sensors_old[i]+65536;//Считаем разницу во времени.
-	rpm = rpm % 65536;//Компенсируем отрицательные значения, так как таймер 16-бит = 65536
-        if(rpm!=0){
-	   rpm = 30000/rpm;//Считаем обороты в минуту, так как таймер тикает 1 раз в 1 миллисекунду = то по формуле 60 секунд/2*период
-	}
-	print_int(rpm);
-    };
-    puts("\r\n");
+    putstr("\n");
+//    puts("old:\r\n");
+//    for(i=0;i<4;i++){
+//	print_int(sensors_old[i]);
+//    };
+//    puts("RPM:\r\n");
+//    for(i=0;i<4;i++){
+//	int rpm=0;
+//	rpm = sensors[i]-sensors_old[i]+65536;//Считаем разницу во времени.
+//	rpm = rpm % 65536;//Компенсируем отрицательные значения, так как таймер 16-бит = 65536
+//        if(rpm!=0){
+//	   rpm = 30000/rpm;//Считаем обороты в минуту, так как таймер тикает 1 раз в 1 миллисекунду = то по формуле 60 секунд/2*период
+//	}
+//	print_int(rpm);
+//    };
+//    puts("\r\n");
+    putstr("\n\nEND");
     if(b5_get(ONBOARD_LED)) b5_clear(ONBOARD_LED); else b5_set(ONBOARD_LED);
     delay(1000);
   };
